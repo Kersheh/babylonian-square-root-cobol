@@ -2,9 +2,18 @@
 
 CC = cobc
 CFLAGS = -x -free -O -Wall
+DIRS = nums
+FILES = $(wildcard $(DIRS:=/*.txt))
 
-build:
+build: sqrt.cob
 	$(CC) $(CFLAGS) sqrt.cob -o sqrt
 
+test: nums
+	@for file in $(FILES) ; do \
+		echo File: $$file ; \
+		cp $$file SQRT.DAT ; \
+		./sqrt ; \
+	done
+
 clean:
-	rm -f sqrt
+	rm -f sqrt *.DAT
