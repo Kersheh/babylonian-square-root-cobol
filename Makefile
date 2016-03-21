@@ -6,7 +6,7 @@ DIRS = nums
 FILES = $(wildcard $(DIRS:=/*.txt))
 
 build: sqrt.cob
-	$(CC) $(CFLAGS) sqrt.cob -o sqrt
+	$(CC) $(CFLAGS) sqrt.cob
 
 test: nums
 	@for file in $(FILES) ; do \
@@ -16,4 +16,4 @@ test: nums
 	done
 
 clean:
-	rm -f sqrt *.DAT
+	rm -f sqrt *.dat

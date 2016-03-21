@@ -1,5 +1,5 @@
 identification division.
-program-id. babylonian_sqrt.
+program-id. babylonian-sqrt.
 
 environment division.
 input-output section.
@@ -11,48 +11,48 @@ file-control.
 data division.
 file section.
 fd input-file.
-  01 standard-input picture x(80).
+  01 standard-input pic x(80).
 fd standard-output.
-  01 out-line picture x(80).
+  01 out-line pic x(80).
 working-storage section.
-77 diff picture v9(5).
-77 z    picture 9(11)v9(6).
-77 k    picture s9999.
-77 x    picture 9(11)v9(6).
-77 y    picture 9(11)v9(6).
-77 temp picture 9(11)v9(6).
+77 diff pic v9(5).
+77 z    pic 9(11)v9(6).
+77 k    pic s9999.
+77 x    pic 9(11)v9(6).
+77 y    pic 9(11)v9(6).
+77 temp pic 9(11)v9(6).
 01 in-card.
-  02 in-z     picture s9(11)v9(6).
-  02 in-diff  picture v9(5).
-  02 filler   picture x(58).
+  02 in-z     pic s9(11)v9(6).
+  02 in-diff  pic v9(5).
+  02 filler   pic x(58).
 01 title-line.
-  02 filler picture x(9) value spaces.
-  02 filler picture x(26) value 'Square Root Approximations'.
+  02 filler pic x(9) value spaces.
+  02 filler pic x(26) value 'Square Root Approximations'.
 01 under-line.
-  02 filler picture x(44) value
+  02 filler pic x(44) value
     '--------------------------------------------'.
 01 col-heads.
-  02 filler picture x(8) value spaces.
-  02 filler picture x(6) value 'Number'.
-  02 filler picture x(15) value spaces.
-  02 filler picture x(11) value 'Square Root'.
+  02 filler pic x(8) value spaces.
+  02 filler pic x(6) value 'Number'.
+  02 filler pic x(15) value spaces.
+  02 filler pic x(11) value 'Square Root'.
 01 underline-2.
-  02 filler picture x(20) value ' -------------------'.
-  02 filler picture x(5) value spaces.
-  02 filler picture x(19) value '------------------'.
+  02 filler pic x(20) value ' -------------------'.
+  02 filler pic x(5) value spaces.
+  02 filler pic x(19) value '------------------'.
 01 print-line.
-  02 filler picture x value space.
-  02 out-z  picture z(11)9.9(6).
-  02 filler picture x(5) value spaces.
-  02 out-y  picture z(11)9.9(6).
+  02 filler pic x value space.
+  02 out-z  pic z(11)9.9(6).
+  02 filler pic x(5) value spaces.
+  02 out-y  pic z(11)9.9(6).
 01 error-mess.
-  02 filler picture x value space.
-  02 ot-z   picture -(11)9.9(6).
-  02 filler picture x(21) value '        Invalid input'.
+  02 filler pic x value space.
+  02 ot-z   pic -(11)9.9(6).
+  02 filler pic x(21) value '        Invalid input'.
 01 abort-mess.
-  02 filler picture x value space.
-  02 outp-z picture z(11)9.9(6).
-  02 filler picture x(37) value
+  02 filler pic x value space.
+  02 outp-z pic z(11)9.9(6).
+  02 filler pic x(37) value
      ' Attempt aborted, too many iterations'.
 
 procedure division.
