@@ -11,7 +11,7 @@ build: sqrt.cob
 test: nums
 	@for file in $(FILES) ; do \
 		echo File: $$file ; \
-		cp $$file SQRT.DAT ; \
+		cp $$file sqrt.dat ; \
 		./sqrt ; \
 	done
 
