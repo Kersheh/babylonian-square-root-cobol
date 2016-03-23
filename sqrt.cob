@@ -63,7 +63,9 @@ procedure division.
   write out-line from underline-2 after advancing 1 line.
 s1.
   read input-file into in-card at end go to finish.
-  if in-z is greater than zero go to b1.
+  if in-z is > 0
+    go to b1
+  end-if.
   move in-z to ot-z.
   write out-line from error-mess after advancing 1 line.
   go to s1.
@@ -71,16 +73,19 @@ b1.
   move in-diff to diff.
   move in-z to z.
   divide 2 into z giving x rounded.
-  perform s2 thru e2 varying k from 1 by 1
-    until k is greater than 1000.
+  perform s2 thru e2 varying k from 1 by 1 until k is > 1000.
   move in-z to outp-z.
   write out-line from abort-mess after advancing 1 line.
   go to s1.
 s2.
   compute y rounded = 0.5 * (x + z / x).
   subtract x from y giving temp.
-  if temp is less than zero compute temp = - temp.
-  if temp / (y + x) is greater than diff go to e2.
+  if temp is < 0 
+    compute temp = - temp
+  end-if.
+  if temp / (y + x) is > diff 
+    go to e2
+  end-if.
   move in-z to out-z.
   move y to out-y.
   write out-line from print-line after advancing 1 line.
