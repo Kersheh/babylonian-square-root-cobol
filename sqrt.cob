@@ -39,7 +39,7 @@ working-storage section.
 01 underline-2.
   02 filler pic x(20) value ' -------------------'.
   02 filler pic x(5) value spaces.
-  02 filler pic x(19) value '------------------'.
+  02 filler pic x(19) value ' ------------------'.
 01 print-line.
   02 filler pic x value space.
   02 out-z  pic z(11)9.9(6).
@@ -63,7 +63,7 @@ procedure division.
   write out-line from underline-2 after advancing 1 line.
 s1.
   read input-file into in-card at end go to finish.
-  if in-z is > 0
+  if in-z > 0
     go to b1
   end-if.
   move in-z to ot-z.
@@ -73,17 +73,17 @@ b1.
   move in-diff to diff.
   move in-z to z.
   divide 2 into z giving x rounded.
-  perform s2 thru e2 varying k from 1 by 1 until k is > 1000.
+  perform s2 thru e2 varying k from 1 by 1 until k > 1000.
   move in-z to outp-z.
   write out-line from abort-mess after advancing 1 line.
   go to s1.
 s2.
   compute y rounded = 0.5 * (x + z / x).
   subtract x from y giving temp.
-  if temp is < 0 
+  if temp < 0 
     compute temp = - temp
   end-if.
-  if temp / (y + x) is > diff 
+  if temp / (y + x) > diff 
     go to e2
   end-if.
   move in-z to out-z.
