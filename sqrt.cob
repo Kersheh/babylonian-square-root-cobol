@@ -15,6 +15,9 @@ fd input-file.
 fd standard-output.
   01 out-line pic x(80).
 working-storage section.
+77 g    pic 9(11)v9(6).
+77 g2   pic 9(11)v9(6).
+77 n    pic 9(11)v9(6).
 77 diff pic v9(5).
 77 z    pic 9(11)v9(6).
 77 k    pic s9999.
@@ -54,44 +57,72 @@ working-storage section.
   02 outp-z pic z(11)9.9(6).
   02 filler pic x(37) value
      ' Attempt aborted, too many iterations'.
+01 user-prompt.
+  02 filler pic x(31) value
+    'Input a value to be calculated:'.
 
 procedure division.
-  open input input-file, output standard-output.
+open input input-file, output standard-output.
+user-input.
   write out-line from title-line after advancing 0 lines.
-  write out-line from under-line after advancing 1 lines.
-  write out-line from col-heads after advancing 1 line.
-  write out-line from under-line-2 after advancing 1 line.
-s1.
-  read input-file into in-card at end go to finish.
-  if in-z > 0
-    go to b1
-  end-if.
-  move in-z to ot-z.
-  write out-line from error-mess after advancing 1 line.
-  go to s1.
-b1.
-  move in-diff to diff.
-  move in-z to z.
-  divide 2 into z giving x rounded.
-  perform s2 thru e2 varying k from 1 by 1 until k > 1000.
-  move in-z to outp-z.
-  write out-line from abort-mess after advancing 1 line.
-  go to s1.
-s2.
-  compute y rounded = 0.5 * (x + z / x).
-  subtract x from y giving temp.
-  if temp < 0 
-    compute temp = - temp
-  end-if.
-  if temp / (y + x) > diff 
-    go to e2
-  end-if.
+  write out-line from user-prompt after advancing 1 lines.
+  accept in-z.
+
+sqrt.
+  compute g = in-z / 2.0.
+  compute g2 = g + 1.0.
+  perform calc until g = g2.
   move in-z to out-z.
-  move y to out-y.
-  write out-line from print-line after advancing 1 line.
-  go to s1.
-e2.
-  move y to x.
+  move g to out-y.
+
+header.
+  write out-line from under-line.
+  write out-line from col-heads.
+  write out-line from under-line-2.
+  write out-line from print-line.
+
 finish.
   close input-file, standard-output.
-stop run.
+  stop run.
+
+calc.
+  compute n = in-z / g.
+  move g to g2.
+  compute g = (g + n) / 2.0.
+
+
+
+*> s1.
+*>   read input-file into in-card at end go to finish.
+*>   if in-z > 0
+*>     go to b1
+*>   end-if.
+*>   move in-z to ot-z.
+*>   write out-line from error-mess after advancing 1 line.
+*>   go to s1.
+*> b1.
+*>   move in-diff to diff.
+*>   move in-z to z.
+*>   divide 2 into z giving x rounded.
+*>   perform s2 thru e2 varying k from 1 by 1 until k > 1000.
+*>   move in-z to outp-z.
+*>   write out-line from abort-mess after advancing 1 line.
+*>   go to s1.
+*> s2.
+*>   compute y rounded = 0.5 * (x + z / x).
+*>   subtract x from y giving temp.
+*>   if temp < 0 
+*>     compute temp = - temp
+*>   end-if.
+*>   if temp / (y + x) > diff 
+*>     go to e2
+*>   end-if.
+*>   move in-z to out-z.
+*>   move y to out-y.
+*>   write out-line from print-line after advancing 1 line.
+*>   go to s1.
+*> e2.
+*>   move y to x.
+*> finish.
+*>   close input-file, standard-output.
+*> stop run.
