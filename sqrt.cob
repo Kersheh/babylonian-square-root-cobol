@@ -40,7 +40,7 @@ working-storage section.
 01 print-line.
   02 filler pic x value space.
   02 out-z  pic z(11)9.9(6).
-  02 filler pic x(5) value spaces.
+  02 filler pic x(6) value spaces.
   02 out-y  pic z(11)9.9(6).
 01 error-mess.
   02 filler pic x value space.
@@ -54,13 +54,22 @@ working-storage section.
 01 user-prompt.
   02 filler pic x(31) value
     'Input a value to be calculated:'.
+01 error-neg.
+  02 filler pic x(54) value
+    'Cannot calculate the square root of a negative number.'.
 
 procedure division.
 open output standard-output.
 user-input.
-  write out-line from title-line after advancing 0 lines.
-  write out-line from user-prompt after advancing 1 lines.
+  write out-line from under-line.
+  write out-line from title-line.
+  write out-line from under-line.
+  write out-line from user-prompt.
   accept in-z.
+  if in-z < 0 then
+    write out-line from error-neg
+    stop run
+  end-if.
 
 sqrt.
   compute g = in-z / 2.0.
