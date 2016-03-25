@@ -29,17 +29,17 @@ working-storage section.
   02 filler pic x(9) value spaces.
   02 filler pic x(26) value 'Square Root Approximations'.
 01 under-line.
-  02 filler pic x(44) value
-    '--------------------------------------------'.
+  02 filler pic x(45) value
+    '---------------------------------------------'.
 01 col-heads.
   02 filler pic x(8) value spaces.
   02 filler pic x(6) value 'Number'.
   02 filler pic x(15) value spaces.
   02 filler pic x(11) value 'Square Root'.
-01 underline-2.
-  02 filler pic x(20) value ' -------------------'.
+01 under-line-2.
+  02 filler pic x(20) value '--------------------'.
   02 filler pic x(5) value spaces.
-  02 filler pic x(19) value ' ------------------'.
+  02 filler pic x(20) value '--------------------'.
 01 print-line.
   02 filler pic x value space.
   02 out-z  pic z(11)9.9(6).
@@ -60,7 +60,7 @@ procedure division.
   write out-line from title-line after advancing 0 lines.
   write out-line from under-line after advancing 1 lines.
   write out-line from col-heads after advancing 1 line.
-  write out-line from underline-2 after advancing 1 line.
+  write out-line from under-line-2 after advancing 1 line.
 s1.
   read input-file into in-card at end go to finish.
   if in-z > 0
