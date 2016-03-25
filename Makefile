@@ -7,4 +7,4 @@ build: sqrt.cob
 	$(CC) $(CFLAGS) sqrt.cob
 
 clean:
-	rm -f sqrt *.dat
+	rm -f sqrt
