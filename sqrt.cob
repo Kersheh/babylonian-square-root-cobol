@@ -4,14 +4,10 @@ program-id. babylonian-sqrt.
 environment division.
 input-output section.
 file-control.
-  select input-file assign to "sqrt.dat"
-  organization is line sequential.
   select standard-output assign to display.
 
 data division.
 file section.
-fd input-file.
-  01 standard-input pic x(80).
 fd standard-output.
   01 out-line pic x(80).
 working-storage section.
@@ -26,8 +22,6 @@ working-storage section.
 77 temp pic 9(11)v9(6).
 01 in-card.
   02 in-z     pic s9(11)v9(6).
-  02 in-diff  pic v9(5).
-  02 filler   pic x(58).
 01 title-line.
   02 filler pic x(9) value spaces.
   02 filler pic x(26) value 'Square Root Approximations'.
@@ -62,7 +56,7 @@ working-storage section.
     'Input a value to be calculated:'.
 
 procedure division.
-open input input-file, output standard-output.
+open output standard-output.
 user-input.
   write out-line from title-line after advancing 0 lines.
   write out-line from user-prompt after advancing 1 lines.
@@ -82,47 +76,10 @@ header.
   write out-line from print-line.
 
 finish.
-  close input-file, standard-output.
+  close standard-output.
   stop run.
 
 calc.
   compute n = in-z / g.
   move g to g2.
   compute g = (g + n) / 2.0.
-
-
-
-*> s1.
-*>   read input-file into in-card at end go to finish.
-*>   if in-z > 0
-*>     go to b1
-*>   end-if.
-*>   move in-z to ot-z.
-*>   write out-line from error-mess after advancing 1 line.
-*>   go to s1.
-*> b1.
-*>   move in-diff to diff.
-*>   move in-z to z.
-*>   divide 2 into z giving x rounded.
-*>   perform s2 thru e2 varying k from 1 by 1 until k > 1000.
-*>   move in-z to outp-z.
-*>   write out-line from abort-mess after advancing 1 line.
-*>   go to s1.
-*> s2.
-*>   compute y rounded = 0.5 * (x + z / x).
-*>   subtract x from y giving temp.
-*>   if temp < 0 
-*>     compute temp = - temp
-*>   end-if.
-*>   if temp / (y + x) > diff 
-*>     go to e2
-*>   end-if.
-*>   move in-z to out-z.
-*>   move y to out-y.
-*>   write out-line from print-line after advancing 1 line.
-*>   go to s1.
-*> e2.
-*>   move y to x.
-*> finish.
-*>   close input-file, standard-output.
-*> stop run.
