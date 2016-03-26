@@ -40,27 +40,42 @@ data division.
       02 out-x  pic z(11)9.9(6).
       02 filler pic x(6) value spaces.
       02 out-y  pic z(11)9.9(6).
+    01 quit-msg.
+      02 filler pic x(33) value
+        'To quit, input a negative number.'.
     01 user-prompt.
       02 filler pic x(31) value
         'Input a value to be calculated:'.
-    01 error-neg.
+    01 quit.
       02 filler pic x(54) value
-        'Cannot calculate the square root of a negative number.'.
+        'Negative value: Exiting program.'.
 
 procedure division.
   *> Open standard out
   open output standard-output.
 
   *> Prompt user for input
-  user-input.
+  header.
     write out-line from under-line.
     write out-line from title-line.
     write out-line from under-line.
+    write out-line from quit-msg.
+    
+  *> Loop user input
+  perform user-input thru read-out forever.
+
+  *> Close standard out and end program
+  finish.
+    close standard-output.
+    stop run.
+
+  *> Prompt user for input
+  user-input.
     write out-line from user-prompt.
     accept in-x.
     *> Check if the user input is negative
     if in-x < 0 then
-      write out-line from error-neg
+      write out-line from quit
       stop run
     end-if.
     move in-x to x.
@@ -70,6 +85,7 @@ procedure division.
     call "sub-sqrt" using x, y.
     move x to out-x.
     move y to out-y.
+    display out-x.
 
   *> Output results
   read-out.
@@ -77,8 +93,3 @@ procedure division.
     write out-line from col-heads.
     write out-line from under-line-2.
     write out-line from print-line.
-
-  *> Close standard out and end program
-  finish.
-    close standard-output.
-    stop run.
