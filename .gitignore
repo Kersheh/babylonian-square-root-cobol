@@ -3,3 +3,4 @@
 sqrt
 resources
 *.dylib
+*.so

@@ -12,4 +12,4 @@ sub-sqrt: sub-sqrt.cob
 	$(CC) -m $(CFLAGS) sub-sqrt.cob
 
 clean:
-	rm -f sqrt *.dylib
+	rm -f sqrt *.dylib *.so
