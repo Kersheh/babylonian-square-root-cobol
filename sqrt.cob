@@ -1,3 +1,5 @@
+*> sqrt.cob: Babylonian square root calculator.
+*> Author: Matthew Breckon
 identification division.
   program-id. babylonian-sqrt.
 
@@ -63,6 +65,7 @@ procedure division.
     end-if.
     move in-x to x.
 
+  *> Call to external square root module
   sqrt.
     call "sub-sqrt" using x, y.
     move x to out-x.

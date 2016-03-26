@@ -1,3 +1,5 @@
+*> sub-sqrt.cob: Babylonian square root module.
+*> Author: Matthew Breckon
 identification division.
   program-id. sub-sqrt.
 
