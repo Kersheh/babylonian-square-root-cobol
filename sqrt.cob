@@ -76,7 +76,8 @@ procedure division.
     *> Check if the user input is negative
     if in-x < 0 then
       write out-line from quit
-      exit
+      perform finish
+      *> perform finish
     end-if.
     move in-x to x.
 
