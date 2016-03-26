@@ -77,7 +77,6 @@ procedure division.
     if in-x < 0 then
       write out-line from quit
       perform finish
-      *> perform finish
     end-if.
     move in-x to x.
 
