@@ -56,17 +56,15 @@ procedure division.
     write out-line from under-line.
     write out-line from user-prompt.
     accept in-x.
+    *> Check if the user input is negative
     if in-x < 0 then
       write out-line from error-neg
       stop run
     end-if.
     move in-x to x.
 
-  *> Perform babylonian square root
   sqrt.
-    compute y = x / 2.0.
-    compute y2 = y + 1.0.
-    perform calc until y = y2.
+    call "sub-sqrt" using x, y.
     move x to out-x.
     move y to out-y.
 
@@ -81,9 +79,3 @@ procedure division.
   finish.
     close standard-output.
     stop run.
-
-  *> 'Function': Calculate recursive portion of babylonian square root
-  calc.
-    compute n = x / y.
-    move y to y2.
-    compute y = (y + n) / 2.0.
