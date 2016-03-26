@@ -62,7 +62,7 @@ procedure division.
     write out-line from quit-msg.
     
   *> Loop user input
-  perform user-input thru read-out forever.
+  perform user-input thru read-out until in-x < 0.
 
   *> Close standard out and end program
   finish.
@@ -76,7 +76,7 @@ procedure division.
     *> Check if the user input is negative
     if in-x < 0 then
       write out-line from quit
-      stop run
+      exit
     end-if.
     move in-x to x.
 
